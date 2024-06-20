@@ -2,6 +2,9 @@ import React from 'react'
 import { useCalendarStore, useUIStore } from '../../hooks'
 import { addHours } from 'date-fns';
 
+/**
+ * floating button to create new events
+ */
 export const FabAddNew = () => {
     const {setActiveEvent} = useCalendarStore();
     const {openDateModal} = useUIStore();
@@ -24,7 +27,7 @@ export const FabAddNew = () => {
     
     return (
         <button
-            className='bt btn-primary fab'
+            className='btn btn-primary fab'
             onClick={handleClickNew}
         >
             <i className='fa fa-plus'></i>

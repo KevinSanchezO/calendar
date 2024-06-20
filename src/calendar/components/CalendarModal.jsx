@@ -33,7 +33,7 @@ Modal.setAppElement('#root');
 export const CalendarModal = () => {
 
     const { isDateModalOpen, closeDateModal } = useUIStore();// access the information of the uiSlice from the customHook to access the info
-    const { activeEvent } = useCalendarStore()
+    const { activeEvent, startSavingEvent } = useCalendarStore()
     const [formSubmited, setformSubmited] = useState(false);
     const [formValues, setformValues] = useState({
         title: 'Kevin',
@@ -75,7 +75,7 @@ export const CalendarModal = () => {
         closeDateModal()
     }
 
-    const onSubmit = (event) => {
+    const onSubmit = async (event) => {
         event.preventDefault();
         setformSubmited(true);
 
@@ -88,11 +88,9 @@ export const CalendarModal = () => {
 
         if (formValues.title.length <= 0) return;
 
-        console.log(formValues)
-        /** TODO:
-         * cerrar modal
-         * errores en pantallas
-         */
+        await startSavingEvent( formValues );
+        closeDateModal();
+        setformSubmited(false);
     }
 
     return (
